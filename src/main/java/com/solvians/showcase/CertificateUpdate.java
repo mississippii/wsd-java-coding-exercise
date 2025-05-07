@@ -24,7 +24,8 @@ public class CertificateUpdate {
 
     @Override
     public String toString() {
-        return "CertificateUpdate [TimeStamp=" + timestamp + ", ISIN=" + isin + ", BidPrice="+bidPrice+"BidSize=" + bidSize + ", AskPrice="+askPrice+"AskSize=" + askSize+", MaturityDate=" + maturityDate + "]";
+        return "CertificateUpdate " +
+                "[TimeStamp=" + timestamp + ", ISIN=" + isin + ", BidPrice="+bidPrice+"BidSize=" + bidSize + ", AskPrice="+askPrice+"AskSize=" + askSize+", MaturityDate=" + maturityDate + "]";
     }
 
     public long getTimestamp() { return timestamp; }
