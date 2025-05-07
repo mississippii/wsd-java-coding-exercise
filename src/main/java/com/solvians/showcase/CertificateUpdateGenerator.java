@@ -20,7 +20,7 @@ public class CertificateUpdateGenerator {
         ExecutorService executorService = Executors.newFixedThreadPool(threads);
         List<Callable<CertificateUpdate>> tasks = new ArrayList<>();
 
-        for (int i = 0; i < quotes; i++) {
+        for (int i = 0; i < quotes*threads; i++) {
             tasks.add(new CertificateUpdateCallable());
         }
         try{
@@ -30,7 +30,7 @@ public class CertificateUpdateGenerator {
                 updates.add(future.get());
             }
             executorService.shutdown();
-            return updates.stream().parallel().limit(quotes);
+            return updates.stream();
         }catch (Exception e) {
             Thread.currentThread().interrupt();
             executorService.shutdownNow();

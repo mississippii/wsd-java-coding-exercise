@@ -20,7 +20,7 @@ public class ISINGenerator {
         Random random = new Random();
         char firstChar = (char) ('A' + random.nextInt(26));
         char secondChar = (char) ('A' + random.nextInt(26));
-        return  firstChar + secondChar+"";
+        return firstChar +String.valueOf(secondChar);
     }
 
     private static String generateAlphanumeric(int length){
