@@ -24,15 +24,13 @@ public class CertificateUpdate {
 
     @Override
     public String toString() {
-        return "CertificateUpdate " +
-                "[TimeStamp=" + timestamp + ", ISIN=" + isin + ", BidPrice="+bidPrice+"BidSize=" + bidSize + ", AskPrice="+askPrice+"AskSize=" + askSize+", MaturityDate=" + maturityDate + "]";
+        return "CertificateUpdate \n" +
+                "[TimeStamp=" + timestamp +"\n"+
+                "ISIN=" + isin + "\n"+
+                "BidPrice="+ bidPrice+"\n"+
+                "BidSize=" + bidSize + "\n"+
+                "AskPrice="+askPrice+"\n"+
+                "AskSize=" + askSize+"\n"+
+                "MaturityDate=" + maturityDate + "]";
     }
-
-    public long getTimestamp() { return timestamp; }
-    public String getIsin() { return isin; }
-    public double getBidPrice() { return bidPrice; }
-    public int getBidSize() { return bidSize; }
-    public double getAskPrice() { return askPrice; }
-    public int getAskSize() { return askSize; }
-    public LocalDate getMaturityDate() { return maturityDate; }
 }

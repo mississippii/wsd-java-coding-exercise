@@ -2,7 +2,7 @@ package com.solvians.showcase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 import java.util.stream.Stream;
 
 public class CertificateUpdateGenerator {
@@ -17,10 +17,29 @@ public class CertificateUpdateGenerator {
     public Stream<CertificateUpdate> generateQuotes() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         // TODO: Implement me.
-        List<CertificateUpdate> updateList = new ArrayList<CertificateUpdate>();
-        for (int i = 0; i < threads * quotes; i++) {
-            updateList.add(new CertificateUpdate());
+        ExecutorService executorService = Executors.newFixedThreadPool(threads);
+        List<Callable<CertificateUpdate>> tasks = new ArrayList<>();
+
+        for (int i = 0; i < quotes; i++) {
+            tasks.add(new CertificateUpdateCallable());
         }
-        return Stream.generate(CertificateUpdate::new).parallel().limit(quotes);
+        try{
+            List<Future<CertificateUpdate>> futures = executorService.invokeAll(tasks);
+            List<CertificateUpdate> updates = new ArrayList<>();
+            for (Future<CertificateUpdate> future : futures) {
+                updates.add(future.get());
+            }
+            executorService.shutdown();
+            return updates.stream().parallel().limit(quotes);
+        }catch (Exception e) {
+            Thread.currentThread().interrupt();
+            executorService.shutdownNow();
+            throw new RuntimeException(e);
+        }
+//        List<CertificateUpdate> updateList = new ArrayList<CertificateUpdate>();
+//        for (int i = 0; i < threads * quotes; i++) {
+//            updateList.add(new CertificateUpdate());
+//        }
+//        return Stream.generate(CertificateUpdate::new).parallel().limit(quotes);
     }
 }
