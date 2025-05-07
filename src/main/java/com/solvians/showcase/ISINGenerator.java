@@ -44,7 +44,7 @@ public class ISINGenerator {
             }
         }
         int sum = 0;
-        Collections.reverse(digits);
+        Collections.reverse(digits); // Starting from  rightmost digit
         for(int i = 0; i < digits.size(); i++){
             if(digits.get(i)%2 == 0){
                 int product = digits.get(i) * 2;

@@ -17,6 +17,7 @@ public class CertificateUpdateGenerator {
     public Stream<CertificateUpdate> generateQuotes() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         // TODO: Implement me.
+        //My implementation
         ExecutorService executorService = Executors.newFixedThreadPool(threads);
         List<Callable<CertificateUpdate>> tasks = new ArrayList<>();
 
@@ -24,7 +25,7 @@ public class CertificateUpdateGenerator {
             tasks.add(new CertificateUpdateCallable());
         }
         try{
-            List<Future<CertificateUpdate>> futures = executorService.invokeAll(tasks);
+            List<Future<CertificateUpdate>> futures = executorService.invokeAll(tasks); //execute all task
             List<CertificateUpdate> updates = new ArrayList<>();
             for (Future<CertificateUpdate> future : futures) {
                 updates.add(future.get());
