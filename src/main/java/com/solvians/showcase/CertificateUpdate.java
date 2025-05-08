@@ -24,13 +24,13 @@ public class CertificateUpdate {
 
     @Override
     public String toString() {
-        return "CertificateUpdate \n" +
-                "[TimeStamp=" + timestamp +"\n"+
-                "ISIN=" + isin + "\n"+
-                "BidPrice="+ bidPrice+"\n"+
-                "BidSize=" + bidSize + "\n"+
-                "AskPrice="+askPrice+"\n"+
-                "AskSize=" + askSize+"\n"+
-                "MaturityDate=" + maturityDate + "]";
+        return String.format("%d,%s,%.2f,%d,%.2f,%d",
+                timestamp,
+                isin,
+                bidPrice,
+                bidSize,
+                askPrice,
+                askSize
+        );
     }
 }

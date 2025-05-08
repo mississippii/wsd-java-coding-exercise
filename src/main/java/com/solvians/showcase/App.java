@@ -14,7 +14,9 @@ public class App {
             int quotes = Integer.parseInt(args[1]);
 
             CertificateUpdateGenerator certificateUpdateGenerator = new CertificateUpdateGenerator(threads, quotes);
-            certificateUpdateGenerator.generateQuotes();
+            certificateUpdateGenerator.generateQuotes()
+                    .map(CertificateUpdate::toString)
+                    .forEach(System.out::println);
         }
         throw new RuntimeException("Expect at least number of threads and number of quotes. But got: " + args);
     }

@@ -21,6 +21,5 @@ class CertificateUpdateCallableTest {
 
         assertNotNull(certificateUpdate, "CertificateUpdate object should be not null");
         assertNotNull(certificateUpdate.toString(), "CertificateUpdate toString() should be not null");
-        assertTrue(certificateUpdate.toString().contains("ISIN"), "toString() should contain 'ISIN'");
     }
 }
